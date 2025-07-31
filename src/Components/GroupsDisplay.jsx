@@ -12,7 +12,7 @@ export default function GroupsDisplay({ onBackToForm }) {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/groups");
+      const response = await fetch("https://g-backend-4jrl.onrender.com/api/groups");
 
       if (!response.ok) {
         const data = await response.json();
