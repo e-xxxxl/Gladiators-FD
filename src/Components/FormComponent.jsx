@@ -8,7 +8,6 @@ export default function FormComponent({ onJoinSuccess, onViewGroups, userJoined 
   const [error, setError] = useState("");
   const [assignedGroup, setAssignedGroup] = useState("");
 
-  // Persist name input on component mount if previously entered
   useEffect(() => {
     const savedName = localStorage.getItem("userName");
     if (savedName) setName(savedName);
@@ -66,6 +65,15 @@ export default function FormComponent({ onJoinSuccess, onViewGroups, userJoined 
     }
   };
 
+  const getGroupColorClass = (group) => {
+    return {
+      Red: "text-red-600",
+      Blue: "text-blue-600",
+      Black: "text-black",
+      Orange: "text-orange-500",
+    }[group] || "text-gray-500";
+  };
+
   if (assignedGroup) {
     return (
       <div className="max-w-md mx-auto">
@@ -78,17 +86,7 @@ export default function FormComponent({ onJoinSuccess, onViewGroups, userJoined 
           </h2>
           <p className="text-green-700 mb-6">
             You've been assigned to the{" "}
-            <span
-              className={`font-bold ${
-                assignedGroup === "Red"
-                  ? "text-red-600"
-                  : assignedGroup === "Blue"
-                    ? "text-blue-600"
-                    : assignedGroup === "Green"
-                      ? "text-green-600"
-                      : "text-yellow-600"
-              }`}
-            >
+            <span className={`font-bold ${getGroupColorClass(assignedGroup)}`}>
               {assignedGroup}
             </span>{" "}
             group. Get ready to meet after 2 years!

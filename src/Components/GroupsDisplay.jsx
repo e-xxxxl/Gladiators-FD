@@ -40,6 +40,7 @@ export default function GroupsDisplay({ onBackToForm }) {
         border: "border-red-200",
         header: "bg-gradient-to-r from-red-500 to-red-600",
         text: "text-red-800",
+        borderAccent: "border-red-400",
         emoji: "🍎",
       },
       Blue: {
@@ -47,32 +48,35 @@ export default function GroupsDisplay({ onBackToForm }) {
         border: "border-blue-200",
         header: "bg-gradient-to-r from-blue-500 to-blue-600",
         text: "text-blue-800",
-        emoji: "🫐",
+        borderAccent: "border-blue-400",
+        emoji: "🔵",
       },
-      Green: {
-        bg: "bg-green-50",
-        border: "border-green-200",
-        header: "bg-gradient-to-r from-green-500 to-green-600",
-        text: "text-green-800",
-        emoji: "🥒",
+      Black: {
+        bg: "bg-gray-900",
+        border: "border-gray-700",
+        header: "bg-gradient-to-r from-gray-800 to-black",
+        text: "text-black",
+        borderAccent: "border-white",
+        emoji: "⚫",
       },
-      Yellow: {
-        bg: "bg-yellow-50",
-        border: "border-yellow-200",
-        header: "bg-gradient-to-r from-yellow-500 to-yellow-600",
-        text: "text-yellow-800",
-        emoji: "🌽",
+      Orange: {
+        bg: "bg-orange-50",
+        border: "border-orange-200",
+        header: "bg-gradient-to-r from-orange-500 to-orange-600",
+        text: "text-orange-800",
+        borderAccent: "border-orange-400",
+        emoji: "🍊",
       },
     };
-   return configs[groupName] || configs.Green;
+    return configs[groupName] || configs.Red;
   };
 
   if (loading) {
     return (
       <div className="max-w-6xl mx-auto">
         <div className="text-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto mb-4"></div>
-          <p className="text-green-700 text-lg">Loading picnic groups...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+          <p className="text-red-700 text-lg">Loading picnic groups...</p>
         </div>
       </div>
     );
@@ -101,12 +105,12 @@ export default function GroupsDisplay({ onBackToForm }) {
     <div className="max-w-6xl mx-auto">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
         <div>
-          <h2 className="text-3xl font-bold text-green-800">🎪 Picnic Groups</h2>
-          <p className="text-green-700">See who's in each group for the summer picnic!</p>
+          <h2 className="text-3xl font-bold text-red-800">🎪 Picnic Groups</h2>
+          <p className="text-red-700">See who's in each group for the summer picnic!</p>
         </div>
         <button
           onClick={onBackToForm}
-          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-2 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
+          className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white font-semibold py-2 px-6 rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg"
         >
           ← Back to Form
         </button>
@@ -137,15 +141,7 @@ export default function GroupsDisplay({ onBackToForm }) {
                     {members.map((member, index) => (
                       <li
                         key={index}
-                        className={`${config.text} bg-white rounded-lg p-3 shadow-sm border-l-4 ${
-                          groupName === "Red"
-                            ? "border-red-400"
-                            : groupName === "Blue"
-                              ? "border-blue-400"
-                              : groupName === "Green"
-                                ? "border-green-400"
-                                : "border-yellow-400"
-                        } font-medium`}
+                        className={`${config.text} bg-white rounded-lg p-3 shadow-sm border-l-4 ${config.borderAccent} font-medium`}
                       >
                         👤 {member}
                       </li>
